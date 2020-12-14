@@ -3,6 +3,17 @@ package config;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import dao.IDAOCompte;
+import dao.IDAOMedecin;
+import dao.IDAOPatient;
+import dao.IDAOSecretaire;
+import dao.IDAOVisite;
+import dao.jpa.DAOCompteJPA;
+import dao.jpa.DAOMedecinJPA;
+import dao.jpa.DAOPatientJPA;
+import dao.jpa.DAOSecretaireJPA;
+import dao.jpa.DAOVisiteJPA;
+
 
 
 public class Context {
@@ -14,10 +25,11 @@ public class Context {
 	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("hopital");
 
 
-	//private IDAOAlbum daoAlbum= new DAOAlbumJPA();
-	//private IDAOBibliotheque daoBibliotheque = new DAOBibliothequeJPA();
-	//private IDAOFiche daoFiche = new DAOFicheJPA();
-	
+	private IDAOCompte daoCompte= new DAOCompteJPA();
+	private IDAOMedecin daoMedecin = new DAOMedecinJPA();
+	private IDAOSecretaire daoSecretaire = new DAOSecretaireJPA();
+	private IDAOVisite daoVisite = new DAOVisiteJPA();
+	private IDAOPatient daoPatient = new DAOPatientJPA();
 	
 	private Context() {}
 	
