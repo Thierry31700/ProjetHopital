@@ -6,6 +6,19 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("Secretaire")
 public class Secretaire extends Compte{
+
+	public Secretaire() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Secretaire(String login, String password) {
+		super(login, password);
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	
 	
 /*
  	// a integrer dans le menu de App

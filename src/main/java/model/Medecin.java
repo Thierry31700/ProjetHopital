@@ -1,12 +1,31 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("Medecin")
 public class Medecin extends Compte{
 
+	
+	@OneToMany(mappedBy = "medecin")
+	private List<Visite> visites=new ArrayList();
+
+	public Medecin() {
+		super();
+	}
+
+	public Medecin(String login, String password) {
+		super(login, password);
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
 	/*
 	// dans le main
 	public static void ouvertureSalle()

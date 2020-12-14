@@ -6,10 +6,10 @@ import javax.persistence.Embeddable;
 public class Adresse {
 
 	
-	private int numero,cp;
+	private int numero;
 	private String voie;
 	private String ville;
-	
+	private int cp;
 	
 	public Adresse() {
 		
