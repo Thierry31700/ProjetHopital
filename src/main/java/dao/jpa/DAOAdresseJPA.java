@@ -3,39 +3,42 @@ package dao.jpa;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import config.Context;
-import dao.IDAOPatient;
-import model.Patient;
+import dao.IDAOAdresse;
+import model.Adresse;
 
-public class DAOPatientJPA implements IDAOPatient {
+public class DAOAdresseJPA implements IDAOAdresse{
 
 	@Override
-	public Patient findById(Integer id) {
-		EntityManager em = Context.getInstance().getEmf().createEntityManager();
-		Patient p = em.find(Patient.class, id);
+	public Adresse findById(Integer id) {
+		EntityManager em=Context.getInstance().getEmf().createEntityManager();
+		Adresse a = em.find(Adresse.class, id);
 		em.close();
-		return p;
+		return a;
 	}
 
 	@Override
-	public List<Patient> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Adresse> findAll() {
+		EntityManager em=Context.getInstance().getEmf().createEntityManager();
+
+		Query maRequete = em.createQuery("from Adresse",Adresse.class);
+
+		return maRequete.getResultList();
 	}
 
 	@Override
-	public void insert(Patient objet) {
-		EntityManager em = Context.getInstance().getEmf().createEntityManager();
+	public void insert(Adresse objet) {
+		EntityManager em=Context.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
 		em.persist(objet);
 		em.getTransaction().commit();
 		em.close();
 	}
 
-
 	@Override
-	public Patient update(Patient objet) {
+	public Adresse update(Adresse objet) {
 		EntityManager em=Context.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
 		objet=em.merge(objet);
@@ -45,7 +48,7 @@ public class DAOPatientJPA implements IDAOPatient {
 	}
 
 	@Override
-	public void delete(Patient objet) {
+	public void delete(Adresse objet) {
 		EntityManager em=Context.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
 		objet=em.merge(objet);
@@ -60,12 +63,13 @@ public class DAOPatientJPA implements IDAOPatient {
 	public void deleteById(Integer id) {
 		EntityManager em=Context.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
-		Patient p=em.find(Patient.class, id);
+		Adresse a=em.find(Adresse.class, id);
 		
-		em.remove(p);
+		em.remove(a);
 		
 		em.getTransaction().commit();
 		em.close();
 	}
+
 
 }

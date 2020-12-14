@@ -2,6 +2,10 @@ package dao.jpa;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import config.Context;
 import dao.IDAOSecretaire;
 import model.Secretaire;
 
@@ -9,38 +13,62 @@ public class DAOSecretaireJPA implements IDAOSecretaire {
 
 	@Override
 	public Secretaire findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em=Context.getInstance().getEmf().createEntityManager();
+		Secretaire s = em.find(Secretaire.class, id);
+		em.close();
+		return s;
 	}
 
 	@Override
 	public List<Secretaire> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em=Context.getInstance().getEmf().createEntityManager();
+
+		Query maRequete = em.createQuery("from Secretaire",Secretaire.class);
+
+		return maRequete.getResultList();
 	}
 
 	@Override
 	public void insert(Secretaire objet) {
-		// TODO Auto-generated method stub
-		
+		EntityManager em=Context.getInstance().getEmf().createEntityManager();
+		em.getTransaction().begin();
+		em.persist(objet);
+		em.getTransaction().commit();
+		em.close();
 	}
 
 	@Override
 	public Secretaire update(Secretaire objet) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em=Context.getInstance().getEmf().createEntityManager();
+		em.getTransaction().begin();
+		objet=em.merge(objet);
+		em.getTransaction().commit();
+		em.close();
+		return objet;
 	}
 
 	@Override
 	public void delete(Secretaire objet) {
-		// TODO Auto-generated method stub
-		
+		EntityManager em=Context.getInstance().getEmf().createEntityManager();
+		em.getTransaction().begin();
+		objet=em.merge(objet);
+
+		em.remove(objet);
+
+		em.getTransaction().commit();
+		em.close();
 	}
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
+		EntityManager em=Context.getInstance().getEmf().createEntityManager();
+		em.getTransaction().begin();
+		Secretaire s=em.find(Secretaire.class, id);
 		
+		em.remove(s);
+		
+		em.getTransaction().commit();
+		em.close();
 	}
 
 }
