@@ -3,13 +3,12 @@ package config;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import dao.IDAOAdresse;
+
 import dao.IDAOCompte;
 import dao.IDAOMedecin;
 import dao.IDAOPatient;
 import dao.IDAOSecretaire;
 import dao.IDAOVisite;
-import dao.jpa.DAOAdresseJPA;
 import dao.jpa.DAOCompteJPA;
 import dao.jpa.DAOMedecinJPA;
 import dao.jpa.DAOPatientJPA;
@@ -29,7 +28,7 @@ public class Context {
 	private IDAOSecretaire daoSecretaire = new DAOSecretaireJPA();
 	private IDAOVisite daoVisite = new DAOVisiteJPA();
 	private IDAOPatient daoPatient = new DAOPatientJPA();
-	private IDAOAdresse daoAdresse = new DAOAdresseJPA();
+	
 	
 	
 	private Context() {}
@@ -97,14 +96,6 @@ public class Context {
 
 	public void setDaoPatient(IDAOPatient daoPatient) {
 		this.daoPatient = daoPatient;
-	}
-
-	public IDAOAdresse getDaoAdresse() {
-		return daoAdresse;
-	}
-
-	public void setDaoAdresse(IDAOAdresse daoAdresse) {
-		this.daoAdresse = daoAdresse;
 	}
 
 	public void setEmf(EntityManagerFactory emf) {

@@ -4,20 +4,27 @@ package model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import javax.persistence.Table;
+
+
+
 @Entity
+@Table(name="Visite ")
 public class Visite implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int numero;
 	
-	private double tarif;
+	@Column(columnDefinition = "integer default 20")//permet d'affecter valeur par defaut si aucune donnée dans la column
+	private double tarif=20;
 	
 	private int salle;
 	
@@ -34,10 +41,9 @@ public class Visite implements Serializable {
 	}
 
 
-	public Visite(int numero, double tarif, int salle, Medecin medecin, Patient patient) {
+	public Visite(int numero, int salle, Medecin medecin, Patient patient) {
 		
 		this.numero = numero;
-		this.tarif = tarif;
 		this.salle = salle;
 		this.medecin = medecin;
 		this.patient = patient;

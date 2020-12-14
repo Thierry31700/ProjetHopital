@@ -42,9 +42,6 @@ public static void remplissageBase() {
 		Adresse a1 = new Adresse(1,"rue des tulipes","Paris",75000);
 		Adresse a2 = new Adresse(2,"rue des mésanges","Toulouse",31000);
 		
-		Context.getInstance().getDaoAdresse().insert(a1);
-		Context.getInstance().getDaoAdresse().insert(a2);
-		
 		Patient  p1 =new Patient(1234, "Caba","Manuel", a1);	
 		Patient  p2 =new Patient(5678, "Devillers","Thierry", a2);
 		
@@ -121,8 +118,10 @@ public static void remplissageBase() {
 		}*/
 
 	public static void main(String[] args) {
-		
+		Context.getInstance();
 		remplissageBase();
 		
+		
+		Context.getInstance().closeEmf();
 	}
 }
