@@ -2,7 +2,7 @@ package model;
 
 
 
-import java.io.Serializable;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Visite ")
-public class Visite implements Serializable {
+public class Visite {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

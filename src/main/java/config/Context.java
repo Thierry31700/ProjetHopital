@@ -1,5 +1,7 @@
 package config;
 
+import java.util.LinkedList;
+
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -14,6 +16,7 @@ import dao.jpa.DAOMedecinJPA;
 import dao.jpa.DAOPatientJPA;
 import dao.jpa.DAOSecretaireJPA;
 import dao.jpa.DAOVisiteJPA;
+import model.Patient;
 
 
 
@@ -28,7 +31,7 @@ public class Context {
 	private IDAOSecretaire daoSecretaire = new DAOSecretaireJPA();
 	private IDAOVisite daoVisite = new DAOVisiteJPA();
 	private IDAOPatient daoPatient = new DAOPatientJPA();
-	
+	private LinkedList<Patient>fileAttente= new LinkedList<>();
 	
 	
 	private Context() {}
@@ -42,6 +45,14 @@ public class Context {
 		return _instance;
 	}
 
+	public LinkedList<Patient> getFileAttente() {
+		return fileAttente;
+	}
+
+	public  void  setFileAttente(LinkedList<Patient>fileAttente){
+		this.fileAttente=fileAttente;
+		
+	}
 	public EntityManagerFactory getEmf() {
 		return emf;
 	}

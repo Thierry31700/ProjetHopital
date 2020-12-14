@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import javax.persistence.Table;
 @Entity
 @SequenceGenerator(name="Patient")
 @Table(name="Patient")
-public class Patient {
+public class Patient implements Serializable {
 	
 	@Id
 	@Column(name="n_secu")
