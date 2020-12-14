@@ -1,5 +1,36 @@
 package model;
 
-public class Secretaire {
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
+@Entity
+@DiscriminatorValue("Secretaire")
+public class Secretaire extends Compte{
+	
+/*
+ 	// a integrer dans le menu de App
+	public static void ajouterPatientFileAtt()
+	{
+		//A completer
+		//si le patient a un identifiant connu il 
+		//integre la file d'attente, sinon il doit 
+		//remplir un formulaire=>gerer selon le cas
+		
+	}
+	
+	public static void affichEtatFileAtt()
+	{
+		//A completer: afficher la liste ? elle est censee etre chez le medecin
+	}
+	
+	public static void histoVisiteUnPatient()
+	{
+		//A completer (select by id)
+	}
+	
+	public static void partirEnPause()
+	{
+		//A completer (recup liste attente sur txt)
+	}	
+	*/
 }
