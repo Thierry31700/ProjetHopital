@@ -7,7 +7,6 @@ import javax.persistence.Query;
 
 import config.Context;
 import dao.IDAOMedecin;
-import model.Compte;
 import model.Medecin;
 
 public class DAOMedecinJPA implements IDAOMedecin{
