@@ -58,12 +58,13 @@ public class App {
 
 		System.out.println("Se connecter");
 
-
-			String login= saisieString("login:");
-			String password=saisieString("Password:");
-			try {
+		String login="Anna";
+		String password= "People";
+		//String login= saisieString("login:");
+		//String password=saisieString("Password:");
+		try {
 			connected=DAOCompteJPA.checkConnect(login,password);
-		
+
 
 
 			if(connected instanceof Secretaire) 
@@ -76,16 +77,16 @@ public class App {
 				menuMedecin();
 
 			}}
-			catch(Exception e) {
-				System.out.println("Mauvais identifiant");
-				menuAccueil();
-			}
-			
-
-			
+		catch(Exception e) {
+			System.out.println("Mauvais identifiant");
+			menuAccueil();
 		}
+
+
+
+	}
 	private static void menuMedecin() {
-		
+
 		System.out.println("Bienvenue Docteur");
 		System.out.println("Choix du menu :");
 		System.out.println("1 - Ouverture de salle");
@@ -106,9 +107,9 @@ public class App {
 			case 5:System.exit(0);break;
 			}
 		}catch(Exception e) {}
-	
-	menuMedecin();
-}
+
+		menuMedecin();
+	}
 	private static void menuSecretaire() {
 		System.out.println("Bienvenue");
 		System.out.println("Choix du menu :");
@@ -130,88 +131,102 @@ public class App {
 			case 5:System.exit(0);break;
 			}
 		}catch(Exception e) {}
-	
-		menuSecretaire();
-}
-		
 
-private static void ajoutPatient() {
-	System.out.println("Espace Patient");
-	//System.out.println("Entrer le numeros de Sécurité Sociale du patient");
-	
-	int secu=saisieInt("Entrer le numeros de Sécurité Sociale du patient :\n");
-	
-	
-	
+		menuSecretaire();
 	}
 
 
-/*private static void creaPatient() {
-	System.out.println("------------------------------------------------");
-	System.out.println("Creation du Compte");
-	int choix = saisieInt("1 : Administrateur\n"
-			+ "2 : Utilisateur");
-	//switch(choix) {
-case 1:
-	Admin anew=new Admin();
-	Bibliotheque bnew= new Bibliotheque();
-	String pseudo=saisieString("Entrer un pseudo");
-	String pass=saisieString("Entrer un password");
-	String mail=saisieString("Entrer votre mail");
+	private static void ajoutPatient() {
+		System.out.println("Espace Patient");
+
+		int secu=saisieInt("Entrer le numeros de Sécurité Sociale du patient :\n");
+		Patient p =Context.get_instance().getDaoPatient().findById(secu);
 
 
-	anew.setPseudo(pseudo);
-	anew.setMail(mail);
-	anew.setPassword(pass);
+		if (p==null) {
+			p = creaPatient();
+		}
 
-	Context.getInstance().getDaoBibliotheque().insert(bnew);
+		Context.get_instance().getFileAttente().add(p);
 
+		System.out.println("Le patient est ajouté à la liste");
 
-	Context.getInstance().getDaoAdmin().insert(anew);break;
-}
-menuAcceuil();
-}*/
-private static void historiquePatient() {
-	// TODO Auto-generated method stub
-	
-}
+		menuSecretaire();
 
-private static void pause() {
-	// TODO Auto-generated method stub
-	
-}
+	}
+	private static Patient creaPatient() {
+		System.out.println("------------------------------------------------");
+		System.out.println("Creation du Compte patient");
 
-private static void showListeAttente() {
-for(Patient p: Context.get_instance().getFileAttente()) {
-	System.out.println(p);
-}
-	
-}
-
-private static void ouvertureSalle() {
-	// TODO Auto-generated method stub
-	
-}
-
-private static void donneePatient() {
-	// TODO Auto-generated method stub
-	
-}
-
-private static void saveListe() {
-	// TODO Auto-generated method stub
-	
-}
+		Patient pnew=new Patient();
+		Adresse anew= new Adresse();
 
 
+		int secu=saisieInt("Entrer le numero de secu");
+		String nom=saisieString("Entrer le nom");
+		String prenom=saisieString("Entrer le prenom");
+
+		System.out.println("Saisir l'adresse du patient");
+
+		int num=saisieInt("Entrer le numero de la voie");
+		String voie=saisieString("Entrer la voie");
+		String ville=saisieString("Entrer le nom de la ville");
+		int cp=saisieInt("Entrer le code postal");
+
+		anew.setNumero(num);
+		anew.setVoie(voie);
+		anew.setVille(ville);
+		anew.setCp(cp);
+
+		pnew.setSecu(secu);
+		pnew.setNom(nom);
+		pnew.setPrenom(prenom);
+		pnew.setAdresse(anew);	
+
+		Context.getInstance().getDaoPatient().insert(pnew);
+		return pnew;
+	}
+	private static void historiquePatient() {
+		
+
+	}
+
+	private static void pause() {
+		
+
+	}
+
+	private static void showListeAttente() {
+		for(Patient p: Context.get_instance().getFileAttente()) {
+			System.out.println(p.getNom()+" "+p.getPrenom()+" "+p.getSecu());
+		}
+
+	}
+
+	private static void ouvertureSalle() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private static void donneePatient() {
+		// TODO Auto-generated method stub
+
+	}
+
+	private static void saveListe() {
+		// TODO Auto-generated method stub
+
+	}
 
 
 
-public static void main(String[] args) {
-	Context.getInstance();
-	//remplissageBase();
-	menuAccueil();
 
-	Context.getInstance().closeEmf();
-}
+
+	public static void main(String[] args) {
+		Context.getInstance();
+		//remplissageBase();
+		menuAccueil();
+
+		Context.getInstance().closeEmf();
+	}
 }
