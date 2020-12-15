@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 @DiscriminatorValue("Medecin")
@@ -23,6 +24,15 @@ public class Medecin extends Compte{
 		super(login, password);
 		// TODO Auto-generated constructor stub
 	}
+
+	public List<Visite> getVisites() {
+		return visites;
+	}
+
+	public void setVisites(List<Visite> visites) {
+		this.visites = visites;
+	}
+
 	
 	
 	

@@ -72,3 +72,4 @@ public class DAOVisiteJPA implements IDAOVisite{
 	}
 
 }
+

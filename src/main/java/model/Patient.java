@@ -31,10 +31,10 @@ public class Patient implements Serializable {
 	
 	
 	@Embedded
-	private Adresse adresse;
+	private transient Adresse adresse;
 	
 	@OneToMany(mappedBy = "patient")
-	private List<Visite> visite = new ArrayList<>();
+	private List<Visite> visites = new ArrayList<>();
 
 	
 	public Patient() {
@@ -81,12 +81,12 @@ public class Patient implements Serializable {
 		this.adresse = adresse;
 	}
 
-	public List<Visite> getVisite() {
-		return visite;
+	public List<Visite> getVisites() {
+		return visites;
 	}
 
-	public void setVisite(List<Visite> visite) {
-		this.visite = visite;
+	public void setVisites(List<Visite> visites) {
+		this.visites = visites;
 	}
 
 		

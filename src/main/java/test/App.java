@@ -1,7 +1,9 @@
 package test;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 import java.util.List;
@@ -68,8 +70,8 @@ public class App {
 
 		System.out.println("Se connecter");
 
-		String login="House";
-		String password= "cancer";
+		String login="Anna";
+		String password= "people";
 		//String login= saisieString("login:");
 		//String password=saisieString("Password:");
 		try {
@@ -78,7 +80,8 @@ public class App {
 
 
 			if(connected instanceof Secretaire) 
-			{
+			{  
+				revenirPause();
 				menuSecretaire();
 
 			}
@@ -95,6 +98,16 @@ public class App {
 
 
 	}
+	private static void revenirPause() {
+		
+		try {
+		File f=new File("listeAttente.txt");
+		FileInputStream fis=new FileInputStream(f);
+		ObjectInputStream ois=new ObjectInputStream(fis);
+		Context.getInstance().setFileAttente((LinkedList<Patient>) ois.readObject());
+		}catch(Exception e) {}
+	}
+
 	private static void menuMedecin() {
 
 		System.out.println("Bienvenue Docteur");
@@ -114,7 +127,7 @@ public class App {
 			case 2:showListeAttente();break;
 			case 3:donneePatient();break;
 			case 4:saveListe();break;
-			case 5:System.exit(0);break;
+			case 5:saveListe();System.exit(0);break;
 			}
 		}catch(Exception e) {}
 
@@ -137,7 +150,7 @@ public class App {
 			case 1:ajoutPatient();break;
 			case 2:showListeAttente();break;
 			case 3:historiquePatient();break;
-			case 4:pause();break;
+			case 4:pause();menuAccueil();break;
 			case 5:System.exit(0);break;
 			}
 		}catch(Exception e) {}
@@ -150,14 +163,14 @@ public class App {
 		System.out.println("Espace Patient");
 
 		int secu=saisieInt("Entrer le numeros de S�curit� Sociale du patient :\n");
-		Patient p =Context.get_instance().getDaoPatient().findById(secu);
+		Patient p =Context.getInstance().getDaoPatient().findById(secu);
 
 
 		if (p==null) {
 			p = creaPatient();
 		}
 
-		Context.get_instance().getFileAttente().add(p);
+		Context.getInstance().getFileAttente().add(p);
 
 		System.out.println("Le patient est ajout� � la liste");
 
@@ -198,20 +211,17 @@ public class App {
 		return pnew;
 	}
 
-	//A tester apr�s la cr�ation de visites
+	//A tester apres la creation de visites+findByIdWithVisite(secu)
 	private static void historiquePatient() {
 		int secu=saisieInt("Saisir le numero secu du patient");
-		Patient p =Context.get_instance().getDaoPatient().findById(secu);
+		Patient p =Context.getInstance().getDaoPatient().findByIdWithVisites(secu);
 
-		for (Visite v:Context.get_instance().getDaoVisite().findAll())
+		for (Visite v:p.getVisites())
 		{
-			if(v.getPatient()==p) 
-			{System.out.println(v);
+         System.out.println(v);
 			}}
 
-	}
-
-	//plante (oos.writeObject(liste); apparemment)
+	//test Ok
 	private static void pause() {
 		File f=new File( "listeAttente.txt");
 		try (
@@ -219,17 +229,18 @@ public class App {
 				ObjectOutputStream oos=new ObjectOutputStream(fos);
 				)	
 		{
-			LinkedList<Patient> liste=Context.get_instance().getFileAttente();
+			LinkedList<Patient> liste=Context.getInstance().getFileAttente();
 			oos.writeObject(liste);
 		}
 		catch(Exception exception ) 
-		{
+		{ System.out.println(exception.getMessage());
 			exception.printStackTrace();
 		}
+		
 	}
 	//test ok
 	private static void showListeAttente() {
-		for(Patient p: Context.get_instance().getFileAttente()) 
+		for(Patient p: Context.getInstance().getFileAttente()) 
 		{
 			System.out.println(p.getNom()+" "+p.getPrenom()+" "+p.getSecu());
 		}
@@ -237,36 +248,57 @@ public class App {
 	}
 
 	private static void ouvertureSalle() {
-		// TODO Auto-generated method stub
-		//appeler donneePatient(); poll ?
-	}
 
-	//test ok sauf adresse visite
+		System.out.println("Ouverture de salle");
+		System.out.println("Quelle salle voulez vous ouvrir?");
+		System.out.println("1 - Salle 1");
+		System.out.println("2 - Salle 2");
+		System.out.println("3 - Retour");
+		try {
+
+			int choix = saisieInt("");
+			if(choix==1 || choix==2) {
+				Patient p= Context.getInstance().getFileAttente().poll();
+				Visite v=new Visite(choix,(Medecin) connected,p);
+				
+				((Medecin) connected).getVisites().add(v);
+				
+				if(((Medecin) connected).getVisites().size()==10) {
+					saveListe();
+				}
+				
+				System.out.println(p.getSecu()+" "+p.getNom()+ " "+p.getPrenom());
+			}
+			else{
+				menuMedecin();
+				}
+
+			
+		}catch(Exception e) {}
+	}
+		
+
+	//test ok 
 	private static void donneePatient() {
-		// TODO Auto-generated method stub
 		System.out.println("liste des patients:");
 		for(Patient p : Context.getInstance().getDaoPatient().findAll()) 
 		{
 			System.out.println(p.getNom()+" "+p.getPrenom()+" "+p.getSecu());
 			
 		}
-		/*
-		int secu=saisieInt("Entrer le numero de s�cu du patient :");
-		Patient p=Context.get_instance().getDaoPatient().findById(secu);
-		System.out.println("nom:"+p.getNom()+" prenom:"+p.getPrenom()+" numero secu:"+p.getSecu()+" adresse:"+p.getAdresse().getVille()+" visite(s):"+p.getVisite());
-	*/
-	String nom=saisieString("Entrer le nom du patient :");
+		
+		int secu=saisieInt("Entrer le numero de secu du patient :");
+		Patient p=Context.getInstance().getDaoPatient().findByIdWithVisites(secu);
+		System.out.println("nom:"+p.getNom()+" prenom:"+p.getPrenom()+" numero secu:"+p.getSecu()+" adresse:"+p.getAdresse().getVille()+" visite(s):"+p.getVisites());
 	
-		for(Patient p1:Context.getInstance().getDaoPatient().findAll())
-		{
-			if((p1.getNom()).equals(nom)) {
-				System.out.println("nom:"+p1.getNom()+" prenom:"+p1.getPrenom()+" numero secu:"+p1.getSecu()+" adresse:"/*+p.getAdresse()+" visite(s):"+p.getVisite()*/);
-			}
-		}
 	}
 
 	private static void saveListe() {
-		// TODO Auto-generated method stub
+		for(Visite v : ((Medecin) connected).getVisites()) {
+			
+			Context.getInstance().getDaoVisite().insert(v);
+		}
+		((Medecin) connected).getVisites().clear();
 
 	}
 
@@ -275,6 +307,7 @@ public class App {
 
 
 	public static void main(String[] args) {
+		pause();
 		Context.getInstance();
 		//remplissageBase();
 		menuAccueil();

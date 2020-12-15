@@ -4,6 +4,8 @@ package model;
 
 
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,16 +36,26 @@ public class Visite {
 	@ManyToOne
 	private Patient patient;
 
-
+	@Column(columnDefinition = "DATE", name="Visite_le ")
+	private LocalDate visitele;
 
 	public Visite() {
 	
 	}
 
 
-	public Visite(int numero, int salle, Medecin medecin, Patient patient) {
+	public Visite(int numero, int salle, Medecin medecin, Patient patient,LocalDate visitele) {
 		
 		this.numero = numero;
+		this.salle = salle;
+		this.medecin = medecin;
+		this.patient = patient;
+		this.visitele=visitele;
+	}
+
+
+	public Visite(int salle, Medecin medecin, Patient patient) {
+		
 		this.salle = salle;
 		this.medecin = medecin;
 		this.patient = patient;
@@ -97,6 +109,16 @@ public class Visite {
 
 	public void setPatient(Patient patient) {
 		this.patient = patient;
+	}
+
+
+	public LocalDate getVisitele() {
+		return visitele;
+	}
+
+
+	public void setVisitele(LocalDate visitele) {
+		this.visitele = visitele;
 	}
 
 	

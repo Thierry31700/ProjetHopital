@@ -66,11 +66,19 @@ public class DAOPatientJPA implements IDAOPatient {
 		EntityManager em=Context.getInstance().getEmf().createEntityManager();
 		em.getTransaction().begin();
 		Patient p=em.find(Patient.class, id);
-		
+
 		em.remove(p);
-		
+
 		em.getTransaction().commit();
 		em.close();
 	}
+	
+	@Override
+	public Patient findByIdWithVisites(int secu) {
+		EntityManager em=Context.getInstance().getEmf().createEntityManager();
 
+		Query marecherche = em.createQuery("Select p From Patient p Join p.visites where p.secu=:secu",Patient.class);
+		
+		return (Patient) marecherche.getResultList();
+	}
 }

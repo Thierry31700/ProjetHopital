@@ -61,14 +61,6 @@ public class Context {
 		emf.close();
 	}
 
-	public static Context get_instance() {
-		return _instance;
-	}
-
-	public static void set_instance(Context _instance) {
-		Context._instance = _instance;
-	}
-
 	public IDAOCompte getDaoCompte() {
 		return daoCompte;
 	}
