@@ -1,10 +1,20 @@
 package test;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 import config.Context;
 import dao.jpa.DAOCompteJPA;
-import model.*;
+import model.Adresse;
+import model.Compte;
+import model.Medecin;
+import model.Patient;
+import model.Secretaire;
+import model.Visite;
 
 
 public class App {
@@ -58,8 +68,8 @@ public class App {
 
 		System.out.println("Se connecter");
 
-		String login="Anna";
-		String password= "People";
+		String login="House";
+		String password= "cancer";
 		//String login= saisieString("login:");
 		//String password=saisieString("Password:");
 		try {
@@ -154,6 +164,7 @@ public class App {
 		menuSecretaire();
 
 	}
+	//test ok
 	private static Patient creaPatient() {
 		System.out.println("------------------------------------------------");
 		System.out.println("Creation du Compte patient");
@@ -186,18 +197,40 @@ public class App {
 		Context.getInstance().getDaoPatient().insert(pnew);
 		return pnew;
 	}
+
+	//A tester après la création de visites
 	private static void historiquePatient() {
-		
+		int secu=saisieInt("Saisir le numero secu du patient");
+		Patient p =Context.get_instance().getDaoPatient().findById(secu);
+
+		for (Visite v:Context.get_instance().getDaoVisite().findAll())
+		{
+			if(v.getPatient()==p) 
+			{System.out.println(v);
+			}}
 
 	}
 
+	//plante (oos.writeObject(liste); apparemment)
 	private static void pause() {
-		
-
+		File f=new File( "listeAttente.txt");
+		try (
+				FileOutputStream fos=new FileOutputStream(f);
+				ObjectOutputStream oos=new ObjectOutputStream(fos);
+				)	
+		{
+			LinkedList<Patient> liste=Context.get_instance().getFileAttente();
+			oos.writeObject(liste);
+		}
+		catch(Exception exception ) 
+		{
+			exception.printStackTrace();
+		}
 	}
-
+	//test ok
 	private static void showListeAttente() {
-		for(Patient p: Context.get_instance().getFileAttente()) {
+		for(Patient p: Context.get_instance().getFileAttente()) 
+		{
 			System.out.println(p.getNom()+" "+p.getPrenom()+" "+p.getSecu());
 		}
 
@@ -205,12 +238,31 @@ public class App {
 
 	private static void ouvertureSalle() {
 		// TODO Auto-generated method stub
-
+		//appeler donneePatient(); poll ?
 	}
 
+	//test ok sauf adresse visite
 	private static void donneePatient() {
 		// TODO Auto-generated method stub
-
+		System.out.println("liste des patients:");
+		for(Patient p : Context.getInstance().getDaoPatient().findAll()) 
+		{
+			System.out.println(p.getNom()+" "+p.getPrenom()+" "+p.getSecu());
+			
+		}
+		/*
+		int secu=saisieInt("Entrer le numero de sécu du patient :");
+		Patient p=Context.get_instance().getDaoPatient().findById(secu);
+		System.out.println("nom:"+p.getNom()+" prenom:"+p.getPrenom()+" numero secu:"+p.getSecu()+" adresse:"+p.getAdresse().getVille()+" visite(s):"+p.getVisite());
+	*/
+	String nom=saisieString("Entrer le nom du patient :");
+	
+		for(Patient p1:Context.getInstance().getDaoPatient().findAll())
+		{
+			if((p1.getNom()).equals(nom)) {
+				System.out.println("nom:"+p1.getNom()+" prenom:"+p1.getPrenom()+" numero secu:"+p1.getSecu()+" adresse:"/*+p.getAdresse()+" visite(s):"+p.getVisite()*/);
+			}
+		}
 	}
 
 	private static void saveListe() {

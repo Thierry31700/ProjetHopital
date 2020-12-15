@@ -3,9 +3,11 @@ package dao.jpa;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import config.Context;
 import dao.IDAOPatient;
+import model.Medecin;
 import model.Patient;
 
 public class DAOPatientJPA implements IDAOPatient {
@@ -20,8 +22,11 @@ public class DAOPatientJPA implements IDAOPatient {
 
 	@Override
 	public List<Patient> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em=Context.getInstance().getEmf().createEntityManager();
+
+		Query maRequete = em.createQuery("from Patient",Patient.class);
+
+		return maRequete.getResultList();
 	}
 
 	@Override
