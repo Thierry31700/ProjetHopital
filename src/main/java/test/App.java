@@ -51,7 +51,7 @@ public class App {
 		Context.getInstance().getDaoSecretaire().insert(s);
 
 		Adresse a1 = new Adresse(1,"rue des tulipes","Paris",75000);
-		Adresse a2 = new Adresse(2,"rue des mésanges","Toulouse",31000);
+		Adresse a2 = new Adresse(2,"rue des mï¿½sanges","Toulouse",31000);
 
 		Patient  p1 =new Patient(1234, "Caba","Manuel", a1);	
 		Patient  p2 =new Patient(5678, "Devillers","Thierry", a2);
@@ -101,7 +101,7 @@ public class App {
 		System.out.println("Choix du menu :");
 		System.out.println("1 - Ouverture de salle");
 		System.out.println("2 - Visualisation de la liste d'attente");
-		System.out.println("3 - Donnée patient");
+		System.out.println("3 - Donnï¿½e patient");
 		System.out.println("4 - Sauvegarde Liste visite");
 		System.out.println("5 - Deconnect");
 
@@ -149,7 +149,7 @@ public class App {
 	private static void ajoutPatient() {
 		System.out.println("Espace Patient");
 
-		int secu=saisieInt("Entrer le numeros de Sécurité Sociale du patient :\n");
+		int secu=saisieInt("Entrer le numeros de Sï¿½curitï¿½ Sociale du patient :\n");
 		Patient p =Context.get_instance().getDaoPatient().findById(secu);
 
 
@@ -159,7 +159,7 @@ public class App {
 
 		Context.get_instance().getFileAttente().add(p);
 
-		System.out.println("Le patient est ajouté à la liste");
+		System.out.println("Le patient est ajoutï¿½ ï¿½ la liste");
 
 		menuSecretaire();
 
@@ -198,7 +198,7 @@ public class App {
 		return pnew;
 	}
 
-	//A tester après la création de visites
+	//A tester aprï¿½s la crï¿½ation de visites
 	private static void historiquePatient() {
 		int secu=saisieInt("Saisir le numero secu du patient");
 		Patient p =Context.get_instance().getDaoPatient().findById(secu);
@@ -251,7 +251,7 @@ public class App {
 			
 		}
 		/*
-		int secu=saisieInt("Entrer le numero de sécu du patient :");
+		int secu=saisieInt("Entrer le numero de sï¿½cu du patient :");
 		Patient p=Context.get_instance().getDaoPatient().findById(secu);
 		System.out.println("nom:"+p.getNom()+" prenom:"+p.getPrenom()+" numero secu:"+p.getSecu()+" adresse:"+p.getAdresse().getVille()+" visite(s):"+p.getVisite());
 	*/
