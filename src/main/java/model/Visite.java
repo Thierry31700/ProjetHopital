@@ -44,21 +44,23 @@ public class Visite {
 	}
 
 
-	public Visite(int numero, int salle, Medecin medecin, Patient patient,LocalDate visitele) {
+	public Visite(int numero, int salle, Medecin medecin, Patient patient,LocalDate visitel) {
 		
 		this.numero = numero;
 		this.salle = salle;
 		this.medecin = medecin;
 		this.patient = patient;
 		this.visitele=visitele;
+		
 	}
 
 
-	public Visite(int salle, Medecin medecin, Patient patient) {
+	public Visite(int salle, Medecin medecin, Patient patient,LocalDate visitele) {
 		
 		this.salle = salle;
 		this.medecin = medecin;
 		this.patient = patient;
+		this.visitele=visitele;
 	}
 
 

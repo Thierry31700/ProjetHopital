@@ -21,7 +21,7 @@ import javax.persistence.Table;
 public class Patient implements Serializable {
 	
 	@Id
-	@Column(name="n_secu")
+	@Column(name="secu")
 	private int secu;
 	
 	private String nom;

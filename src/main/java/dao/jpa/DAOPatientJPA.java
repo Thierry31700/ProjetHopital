@@ -79,6 +79,8 @@ public class DAOPatientJPA implements IDAOPatient {
 
 		Query marecherche = em.createQuery("Select p From Patient p Join p.visites where p.secu=:secu",Patient.class);
 		
-		return (Patient) marecherche.getResultList();
+		marecherche.setParameter("secu", secu);
+		
+		return (Patient) marecherche.getSingleResult();
 	}
 }

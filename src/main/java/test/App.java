@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -53,7 +54,7 @@ public class App {
 		Context.getInstance().getDaoSecretaire().insert(s);
 
 		Adresse a1 = new Adresse(1,"rue des tulipes","Paris",75000);
-		Adresse a2 = new Adresse(2,"rue des m�sanges","Toulouse",31000);
+		Adresse a2 = new Adresse(2,"rue des mesanges","Toulouse",31000);
 
 		Patient  p1 =new Patient(1234, "Caba","Manuel", a1);	
 		Patient  p2 =new Patient(5678, "Devillers","Thierry", a2);
@@ -70,10 +71,10 @@ public class App {
 
 		System.out.println("Se connecter");
 
-		String login="Anna";
-		String password= "people";
-		//String login= saisieString("login:");
-		//String password=saisieString("Password:");
+		//String login="Anna";
+		//String password= "people";
+		String login= saisieString("login:");
+		String password=saisieString("Password:");
 		try {
 			connected=DAOCompteJPA.checkConnect(login,password);
 
@@ -114,7 +115,7 @@ public class App {
 		System.out.println("Choix du menu :");
 		System.out.println("1 - Ouverture de salle");
 		System.out.println("2 - Visualisation de la liste d'attente");
-		System.out.println("3 - Donn�e patient");
+		System.out.println("3 - Donnee patient");
 		System.out.println("4 - Sauvegarde Liste visite");
 		System.out.println("5 - Deconnect");
 
@@ -162,7 +163,7 @@ public class App {
 	private static void ajoutPatient() {
 		System.out.println("Espace Patient");
 
-		int secu=saisieInt("Entrer le numeros de S�curit� Sociale du patient :\n");
+		int secu=saisieInt("Entrer le numeros de Securite Sociale du patient :\n");
 		Patient p =Context.getInstance().getDaoPatient().findById(secu);
 
 
@@ -172,7 +173,7 @@ public class App {
 
 		Context.getInstance().getFileAttente().add(p);
 
-		System.out.println("Le patient est ajout� � la liste");
+		System.out.println("Le patient est ajoute a la liste");
 
 		menuSecretaire();
 
@@ -259,7 +260,7 @@ public class App {
 			int choix = saisieInt("");
 			if(choix==1 || choix==2) {
 				Patient p= Context.getInstance().getFileAttente().poll();
-				Visite v=new Visite(choix,(Medecin) connected,p);
+				Visite v=new Visite(choix, (Medecin) connected,p,LocalDate.now());
 				
 				((Medecin) connected).getVisites().add(v);
 				
@@ -288,9 +289,13 @@ public class App {
 		}
 		
 		int secu=saisieInt("Entrer le numero de secu du patient :");
+		try {
 		Patient p=Context.getInstance().getDaoPatient().findByIdWithVisites(secu);
-		System.out.println("nom:"+p.getNom()+" prenom:"+p.getPrenom()+" numero secu:"+p.getSecu()+" adresse:"+p.getAdresse().getVille()+" visite(s):"+p.getVisites());
 	
+	System.out.println("nom:"+p.getNom()+" prenom:"+p.getPrenom()+" numero secu:"+p.getSecu()+" visite(s):"+p.getVisites().size());;
+		}catch(Exception exception ) 
+		
+				{ System.out.println(exception.getMessage());}
 	}
 
 	private static void saveListe() {
