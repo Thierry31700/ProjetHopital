@@ -232,13 +232,13 @@ public class App {
 		{
 			LinkedList<Patient> liste=Context.getInstance().getFileAttente();
 			oos.writeObject(liste);
+			Context.getInstance().getFileAttente().clear();
 		}
 		catch(Exception exception ) 
 		{ System.out.println(exception.getMessage());
 			exception.printStackTrace();
-		}
+		}}
 		
-	}
 	//test ok
 	private static void showListeAttente() {
 		for(Patient p: Context.getInstance().getFileAttente()) 
