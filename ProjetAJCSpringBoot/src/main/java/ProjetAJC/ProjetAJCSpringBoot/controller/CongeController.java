@@ -43,7 +43,7 @@ public class CongeController {
 			return goEdit(conge);
 		}
 		if (conge.getId() == null) {
-			congeService.creation(conge);
+			congeService.creationConge(conge);;
 		} else {
 			congeService.modification(conge);
 		}
@@ -53,7 +53,7 @@ public class CongeController {
 
 	@GetMapping("/edit")
 	public ModelAndView edit(@RequestParam Integer id) {
-		return goEdit(congeService.consultation(id));
+		return goEdit(congeService.find(id));
 	}
 
 	@GetMapping("/add")

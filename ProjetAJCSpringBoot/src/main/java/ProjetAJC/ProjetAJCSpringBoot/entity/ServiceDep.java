@@ -1,5 +1,6 @@
 package ProjetAJC.ProjetAJCSpringBoot.entity;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,23 +8,23 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-@SequenceGenerator(name = "seqService", sequenceName = "seq_service", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name = "seqServiceDep", sequenceName = "seq_service_dep", initialValue = 1, allocationSize = 1)
 
-public class Service {
+public class ServiceDep {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqService")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqServiceDep")
 	private Integer id;
 	private String libelle;
 	
-	public Service() {
+	public ServiceDep() {
 	}
 
-	public Service(Integer id, String libelle) {
+	public ServiceDep(Integer id, String libelle) {
 		this.id = id;
 		this.libelle = libelle;
 	}
 
-	public Service(String libelle) {
+	public ServiceDep(String libelle) {
 		this.libelle = libelle;
 	}
 
@@ -59,7 +60,7 @@ public class Service {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Service other = (Service) obj;
+		ServiceDep other = (ServiceDep) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

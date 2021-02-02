@@ -8,35 +8,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="type_compte")
+@Table(name="compte")
 @SequenceGenerator(name = "seqCompte", sequenceName = "seq_compte", initialValue = 1, allocationSize = 1)
-
 public class Compte {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqCompte")
-
 	protected Integer id;
 	@Column(unique=true)
 	protected String mail;
-	protected String password,nom,prenom;
-	@ManyToOne
-	protected Service service; 
+	@Column(name = "password", length = 200, nullable = false)
+	protected String password;
 	
-
-
-
 	@Version
 	protected int version;
 	@OneToMany(mappedBy = "compte")
@@ -46,30 +37,17 @@ public class Compte {
 	public Compte() {}
 	
 	
-
-
-	public Compte(String mail, String password, String nom, String prenom, Service service) {
+	public Compte(String mail, String password) {
 		this.mail = mail;
 		this.password = password;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.service=service;
 	}
 
-
-
-
-	public Compte(Integer id, String mail, String password, String nom, String prenom, Service service) {
+	public Compte(Integer id, String mail, String password) {
 		this.id = id;
 		this.mail = mail;
 		this.password = password;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.service=service;
+
 	}
-
-
-
 
 	public Integer getId() {
 		return id;
@@ -87,66 +65,24 @@ public class Compte {
 		this.password = password;
 	}
 
-
-
 	public String getMail() {
 		return mail;
 	}
-
-
 
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
 
 
-
 	public int getVersion() {
 		return version;
 	}
-
-
 
 	public void setVersion(int version) {
 		this.version = version;
 	}
 
 
-
-
-	public String getNom() {
-		return nom;
-	}
-
-
-
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-
-
-
-	public String getPrenom() {
-		return prenom;
-	}
-
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-
-	public Service getService() {
-		return service;
-	}
-
-
-	public void setService(Service service) {
-		this.service = service;
-	}
-	
 	public Set<CompteRole> getRoles() {
 		return roles;
 	}

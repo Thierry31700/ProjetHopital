@@ -17,9 +17,9 @@ public class ConsoleService implements CommandLineRunner {
 	Logger logger = LoggerFactory.getLogger(ConsoleService.class);
 
 	@Autowired
-	CompteRepository userRepo;
+	CompteRepository compteRepo;
 	@Autowired
-	CompteRoleRepository userRoleRepo;
+	CompteRoleRepository compteRoleRepo;
 	@Autowired
 	PasswordEncoder passwordEncoder;
 

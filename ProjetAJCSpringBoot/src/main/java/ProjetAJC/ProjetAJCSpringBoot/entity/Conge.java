@@ -1,30 +1,33 @@
 package ProjetAJC.ProjetAJCSpringBoot.entity;
 
-import java.sql.Timestamp;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
 
 @Entity
 @SequenceGenerator(name = "seqConge", sequenceName = "seq_conge", initialValue = 1, allocationSize = 1)
-
 public class Conge {
+	
+	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqConge")
 	private Integer id;
 	
 	@ManyToOne
 	private Employe employe;
-	
+	@Enumerated(EnumType.STRING)
 	private TypeConge typeConge;
 	
 	@Column(columnDefinition = "DATE")
