@@ -13,7 +13,7 @@ public interface CongeRepository  extends JpaRepository<Conge, Integer> {
 
 	
 	@Query("from Conge e where e.dateDebut >= :dateDebut and e.dateFin <= :dateFin")
-	public List<Conge> findAllFilterByDate(LocalDate dateDebut, LocalDate dateFin);
+	public List<Conge> findAllFilterByDate(@Param("dateDebut")LocalDate dateDebut,@Param("dateFin") LocalDate dateFin);
 	
 	@Query("Select c from Conge c left join c.salarie s left join s.service b where s.id=c.salarie and b.id=:id")
 	public List<Conge> findAllFilterByService(@Param("id")Integer id);

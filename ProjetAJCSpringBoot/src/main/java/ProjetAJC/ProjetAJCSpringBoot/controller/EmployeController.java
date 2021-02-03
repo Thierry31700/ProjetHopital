@@ -60,7 +60,11 @@ public class EmployeController {
 	}
 	@PostMapping("/save")
 	public ModelAndView save(@Valid @ModelAttribute("employe") Employe employe, BindingResult br) {
-
+		
+		if (employe.getCompte().getId() == null) {
+			employe.setCompte(null);
+		}
+		
 		if (employe.getManager().getId() == null) {
 			employe.setManager(null);
 		}

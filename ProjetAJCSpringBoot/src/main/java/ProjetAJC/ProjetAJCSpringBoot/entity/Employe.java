@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -34,6 +35,11 @@ public class Employe {
 	@JoinColumn(name = "Service")
 	protected ServiceDep service; 
 	
+	
+	@OneToOne
+	@JoinColumn(name = "compte")
+	protected Compte compte;
+	
 	@Version
 	protected int version;
 
@@ -41,12 +47,16 @@ public class Employe {
 	
 	}
 
-	public Employe(String nom, String prenom, ServiceDep service) {
+	public Employe(@NotEmpty String nom, @NotEmpty String prenom, Employe manager, ServiceDep service, Compte compte) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
+		this.manager = manager;
 		this.service = service;
+		this.compte = compte;
 	}
+
+
 
 	public Employe(@NotEmpty String nom, @NotEmpty String prenom) {
 		super();
@@ -105,6 +115,15 @@ public class Employe {
 
 	public void setVersion(int version) {
 		this.version = version;
+	}
+	
+
+	public Compte getCompte() {
+		return compte;
+	}
+
+	public void setCompte(Compte compte) {
+		this.compte = compte;
 	}
 
 	@Override

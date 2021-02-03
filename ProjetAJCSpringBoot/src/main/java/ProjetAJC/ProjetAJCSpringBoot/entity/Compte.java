@@ -3,15 +3,17 @@ package ProjetAJC.ProjetAJCSpringBoot.entity;
 import java.util.Set;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
+
+
 
 
 
@@ -33,6 +35,9 @@ public class Compte {
 	@OneToMany(mappedBy = "compte")
 	protected Set<CompteRole> roles;
 	
+	
+	@OneToOne(mappedBy = "compte")
+	private Employe utilisateur;
 
 	public Compte() {}
 	
@@ -91,7 +96,14 @@ public class Compte {
 		this.roles = roles;
 	}
 
+	public Employe getUtilisateur() {
+		return utilisateur;
+	}
 
+
+	public void setUtilisateur(Employe utilisateur) {
+		this.utilisateur = utilisateur;
+	}
 
 
 	@Override
