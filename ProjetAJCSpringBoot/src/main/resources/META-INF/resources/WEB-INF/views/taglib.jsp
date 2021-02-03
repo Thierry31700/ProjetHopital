@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="ctx" value="${pageContext.servletContext.contextPath}" />
 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
@@ -26,4 +25,4 @@
 	crossorigin="anonymous"></script>
 
 
-<link rel="stylesheet" href="${ctx}/css/mystyle.css">
+<%-- <link rel="stylesheet" href="${ctx}/css/mystyle.css"> --%>
