@@ -9,30 +9,29 @@
 <c:set var="ctx" value="${pageContext.servletContext.contextPath}" />
 <meta charset="utf-8">
 <link rel="stylesheet" href="${ctx}/css/mystyle.css">
-<title>Accueil Inventaire</title>
+<title>Accueil</title>
 </head>
 <body>
-
-	<div id="container">
-		<!-- zone de connexion -->
-		<div class="login">
-		
-			<h1>Se connecter</h1>
-		</div>
+<div class="container">
 		<c:if test="${param.error != null}">
 			<div class="alert alert-danger">erreur d'authentification</div>
 		</c:if>
-		<form id="connectForm" action="home" method="POST">
-
-			<label><b>Login</b></label> <input type="text"
-				placeholder="Entrer votre mail" name="mail" required> <label><b>Mot
-					de passe</b></label> <input type="password"
-				placeholder="Entrer le mot de passe" name="password" required>
-
-			<input type="submit" id='submit' value='LOGIN'>
-			<div class="error">${error}</div>
+		<form action="" method="post">
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}">
+			<div class="form-group">
+				<label>mail</label> <input name="mail"
+					class="form-control" required="required">
+			</div>
+			<div class="form-group">
+				<label>mot de passe</label><input type="password" name="password"
+					class="form-control" required="required">
+			</div>
+			<div class="form-group">
+				<button class="btn btn-outline-success" type="submit">envoyer</button>
+				<a href="${ctx}" class="btn btn-outline-warning">annuler</a>
+			</div>
 		</form>
-		
 	</div>
 </body>
 </html>

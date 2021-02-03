@@ -13,7 +13,7 @@ import ProjetAJC.ProjetAJCSpringBoot.entity.ServiceDep;
 public interface ServiceDepRepository  extends JpaRepository<ServiceDep, Integer> {
 	
 	
-	@Query("from Service e where e.login like :filter")
+	@Query("from ServiceDep s where s.libelle like :filter")
 	public List<ServiceDep> findAllFilter(@Param("filter") String name);
 
 }
