@@ -14,9 +14,17 @@
 </head>
 <body>
 	<div class="container">
-		<h2>
-			A bientot <a href="${ctx}/accueil" class="btn btn-link">acceuil</a>
-		</h2>
+		<c:if test="${pageContext.request.userPrincipal.name != null }">
+			<jsp:include page="logout.jsp"></jsp:include>
+		</c:if>
+		<h1>Bienvenu</h1>
+		<div>
+			<a href="${ctx}/employe">Congee</a> 
+			
+			<a href="${ctx}/manager">Validation des congees</a>
+			
+			<a href="${ctx}/admin">Gestion</a>
+		</div>
 	</div>
 </body>
 </html>

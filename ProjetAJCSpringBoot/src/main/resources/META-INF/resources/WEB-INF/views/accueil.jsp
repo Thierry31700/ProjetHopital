@@ -14,9 +14,9 @@
 </head>
 <body>
 	<div class="container">
+		<div align="center">
+			<h1>identification</h1>
 
-			<h1>Se connecter</h1>
-		
 			<c:if test="${param.error != null}">
 				<div class="alert alert-danger">erreur d'authentification</div>
 			</c:if>
@@ -24,11 +24,11 @@
 				<input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}">
 				<div class="form-group">
-					<label>mail</label> <input name="mail" class="form-control"
+					<label for="username">mail</label> <input name="username" class="form-control"
 						required="required">
 				</div>
 				<div class="form-group">
-					<label>mot de passe</label><input type="password" name="password"
+					<label for="password">mot de passe</label><input type="password" name="password"
 						class="form-control" required="required">
 				</div>
 				<div class="form-group">
@@ -36,7 +36,7 @@
 					<a href="${ctx}" class="btn btn-outline-warning">annuler</a>
 				</div>
 			</form>
-		
 		</div>
+	</div>
 </body>
 </html>
