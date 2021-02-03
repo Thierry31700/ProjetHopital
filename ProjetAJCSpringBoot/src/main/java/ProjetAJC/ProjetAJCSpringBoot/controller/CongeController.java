@@ -3,6 +3,7 @@ package ProjetAJC.ProjetAJCSpringBoot.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ProjetAJC.ProjetAJCSpringBoot.entity.Conge;
 import ProjetAJC.ProjetAJCSpringBoot.repository.CongeRepository;
+import ProjetAJC.ProjetAJCSpringBoot.service.CompteDetails;
 import ProjetAJC.ProjetAJCSpringBoot.service.CongeService;
 
 @Controller
@@ -26,9 +28,10 @@ public class CongeController {
 	private CongeRepository congeRepo;
 
 	@GetMapping("")
-	public ModelAndView list() {
-		return new ModelAndView( "conge/list","conges", congeRepo.findAll());
-	
+	public ModelAndView list(Authentication authent) {
+		 CompteDetails comptdetails= (CompteDetails)authent.getPrincipal();
+		return new ModelAndView("conge/list", "conges", congeRepo.findAll());
+
 	}
 
 	@GetMapping("/delete")
@@ -40,14 +43,16 @@ public class CongeController {
 	@PostMapping("/save")
 	public ModelAndView save(@Valid @ModelAttribute("conge") Conge conge, BindingResult br) {
 		if (br.hasErrors()) {
+			System.out.println("error");
 			return goEdit(conge);
 		}
 		if (conge.getId() == null) {
-			congeService.creationConge(conge);;
+			congeService.creationConge(conge);
+			;
 		} else {
 			congeService.modification(conge);
 		}
-		
+
 		return new ModelAndView("redirect:/conge");
 	}
 
@@ -62,10 +67,8 @@ public class CongeController {
 	}
 
 	private ModelAndView goEdit(Conge conge) {
-		ModelAndView modelAndView = new ModelAndView("conge/edit","conge", conge);
+		ModelAndView modelAndView = new ModelAndView("conge/edit", "conge", conge);
 		return modelAndView;
 	}
 
-	
-	
 }

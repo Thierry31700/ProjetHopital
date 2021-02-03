@@ -19,9 +19,9 @@
 		</c:if>
 		<h1>Bienvenu</h1>
 		<div>
-			<a href="${ctx}/employe">Congee</a> 
+			<a href="${ctx}/conge">Congés</a> 
 			
-			<a href="${ctx}/manager">Validation des congees</a>
+			<a href="${ctx}/manager">Validation des conges</a>
 			
 			<a href="${ctx}/admin">Gestion</a>
 		</div>

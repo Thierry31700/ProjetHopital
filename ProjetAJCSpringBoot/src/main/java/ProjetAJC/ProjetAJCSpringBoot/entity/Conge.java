@@ -14,6 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Version;
+import javax.validation.constraints.Pattern;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @SequenceGenerator(name = "seqConge", sequenceName = "seq_conge", initialValue = 1, allocationSize = 1)
@@ -31,10 +34,13 @@ public class Conge {
 	private TypeConge typeConge;
 	
 	@Column(columnDefinition = "DATE")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateDebut;
 	@Column(columnDefinition = "DATE")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateFin;
 	@Column(columnDefinition = "DATE")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateDemande=LocalDate.now();
 	
 	private Integer nbJour;
