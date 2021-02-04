@@ -21,7 +21,7 @@ import ProjetAJC.ProjetAJCSpringBoot.service.ServiceDepService;
 
 
 @Controller
-@RequestMapping("/employe")
+@RequestMapping("/admin")
 public class EmployeController {
 	
 	@Autowired
@@ -33,13 +33,13 @@ public class EmployeController {
 	
 	@GetMapping({ "", "/" })
 	public ModelAndView list() {
-		return new ModelAndView("employe/list", "employes", employeService.allEmploye());
+		return new ModelAndView("admin/list", "employes", employeService.allEmploye());
 	}
 
 	@GetMapping("/delete")
 	public ModelAndView delete(@RequestParam(name = "id") Integer id) {
 		 employeService.delete(id);
-		return new ModelAndView("redirect:/employe");
+		return new ModelAndView("redirect:/admin");
 	}	
 
 	@GetMapping("/edit")
@@ -53,13 +53,13 @@ public class EmployeController {
 	}
 
 	private ModelAndView goForm(Employe employe) {
-		ModelAndView modelAndView = new ModelAndView("employe/edit");
+		ModelAndView modelAndView = new ModelAndView("admin/edit");
 		modelAndView.addObject("employe", employe);
 		modelAndView.addObject("service",serviceDepService.allservice());
 		return modelAndView;
 	}
 	@PostMapping("/save")
-	public ModelAndView save(@Valid @ModelAttribute("employe") Employe employe, BindingResult br) {
+	public ModelAndView save(@Valid @ModelAttribute("admin") Employe employe, BindingResult br) {
 		
 		if (employe.getCompte().getId() == null) {
 			employe.setCompte(null);
@@ -79,7 +79,7 @@ public class EmployeController {
 		} else {
 			employeService.save(employe);
 		}
-		return new ModelAndView("redirect:/employe");
+		return new ModelAndView("redirect:/admin");
 	}
 	
 
