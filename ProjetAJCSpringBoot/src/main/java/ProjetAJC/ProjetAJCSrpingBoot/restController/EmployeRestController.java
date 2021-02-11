@@ -2,7 +2,7 @@ package ProjetAJC.ProjetAJCSrpingBoot.restController;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
+
 
 import javax.validation.Valid;
 
@@ -22,8 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
+import ProjetAJC.ProjetAJCSpringBoot.entity.Employe;
+import ProjetAJC.ProjetAJCSpringBoot.exception.EmployeInvalidException;
+import ProjetAJC.ProjetAJCSpringBoot.exception.EmployeNotFoundException;
 import ProjetAJC.ProjetAJCSpringBoot.service.EmployeService;
 
 @RestController
@@ -35,7 +36,6 @@ public class EmployeRestController {
 	private EmployeService EmployeService;
 
 	@GetMapping({ "", "/" })
-	@JsonView(Vue.Common.class)
 	public List<Employe> getAllEmploye() {
 		return EmployeService.allEmploye();
 	}
@@ -55,7 +55,7 @@ public class EmployeRestController {
 
 	@GetMapping("/{id}")
 	public Employe findById(@PathVariable("id") Integer id) {
-		Employe p = EmployeService.find(id);
+		Employe p = EmployeService.findbyId(id);
 		if (p.getId() != null) {
 			return p;
 		}
@@ -67,7 +67,7 @@ public class EmployeRestController {
 		if (br.hasErrors()) {
 			throw new EmployeInvalidException();
 		}
-		Employe EmployeEnBase = EmployeService.find(id);
+		Employe EmployeEnBase = EmployeService.findbyId(id);
 		if (EmployeEnBase.getId() == null) {
 			throw new EmployeNotFoundException();
 		}
@@ -79,7 +79,7 @@ public class EmployeRestController {
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
-		Employe EmployeEnBase = EmployeService.find(id);
+		Employe EmployeEnBase = EmployeService.findbyId(id);
 		if (EmployeEnBase.getId() == null) {
 			throw new EmployeNotFoundException();
 		}
@@ -87,24 +87,5 @@ public class EmployeRestController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
-	@GetMapping("/test")
-	@JsonView(Vue.Common.class)
-	public Employe test() {
-		return testPrivate();
-	}
-
-	@GetMapping("/test/Adresse")
-	@JsonView(Vue.EmployeWithAdresse.class)
-	public Employe test2() {
-		return testPrivate();
-	}
-
-	private Employe testPrivate() {
-		Adresse a = new Adresse();
-		a.setRue("rue aaa");
-		Employe p = new Employe("aa", "pp");
-		p.setAdresse(a);
-		return p;
-	}
 
 }

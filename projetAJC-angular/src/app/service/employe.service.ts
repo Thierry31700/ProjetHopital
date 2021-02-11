@@ -7,16 +7,16 @@ import { Employe } from '../model/employe';
   providedIn: 'root'
 })
 export class EmployeService {
-  private url: string='';
+  private url: string='http://localhost:8080/projetajc/api/Employe';
 
 private httpHeaders: HttpHeaders;
 
 
   constructor( private http: HttpClient) {
     this.httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Basic ' + sessionStorage.getItem('tokenId'),
 
-
-    
     });
    }
    public allEmploye(): Observable<Employe[]>{

@@ -8,9 +8,11 @@ import org.springframework.data.repository.query.Param;
 
 import ProjetAJC.ProjetAJCSpringBoot.entity.Compte;
 
-public interface CompteRepository extends JpaRepository<Compte, Integer> {
+public interface CompteRepository extends JpaRepository<Compte, String> {
 
 	@Query("select c from Compte c left join fetch c.roles where c.mail=:mail")
 	
 	public Optional<Compte> findByMailWithRoles(@Param("mail") String mail);
+
+
 }

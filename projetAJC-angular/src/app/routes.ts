@@ -11,5 +11,5 @@ export const routes: Routes = [
     { path: 'employe/edit', component: EmployeEditComponent },
     { path: 'employe/edit/:id', component: EmployeEditComponent },
     
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];

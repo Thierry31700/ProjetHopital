@@ -13,6 +13,10 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+
+
 
 
 
@@ -26,6 +30,7 @@ public class Compte {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqCompte")
 	protected Integer id;
 	@Column(unique=true)
+	@JsonView(Vue.Common.class)
 	protected String mail;
 	@Column(name = "password", length = 200, nullable = false)
 	protected String password;

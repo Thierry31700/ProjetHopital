@@ -1,26 +1,29 @@
 <table>
-<tr>liste
-<th>id</th>
-<th>nom</th>
-<th>prenom</th>
-</tr>
-
-
+  <tr>
+    <th>Nom</th>
+    <th>Prenom</th>
+    <!-- <th>Mail</th>
+    <th>Service</th> -->
+    <th>Manager</th>
+    <th></th>
+    <th></th>
+  </tr>
     <tr *ngFor="let e of employes">
-      <td>{{ e.id }}</td>
       <td>{{ e.nom }}</td>
       <td>{{ e.prenom }}</td>
+      <!-- <td>{{ e.compte.mail }}</td>
+      <td>{{ e.service.libelle }}</td> -->
+      <td>{{ e.manager }}</td>
       <td>
         <button
-          [routerLink]="['/employe', 'edit', e.id]"
-          routerLinkActive="active"
-        >
-          editer
-        </button>
+          [routerLink]="['/employe', 'edit', e.id]" routerLinkActive="active">
+          editer</button>
       </td>
-      <td><button (click)="delete(e.id)">supprimer</button></td>
+      <td>
+        <button (click)="delete(e.id)">supprimer</button>
+      </td>
     </tr>
-  </table>
+  </table><br>
   
   <button [routerLink]="['/employe', 'edit']" routerLinkActive="active">
     ajouter

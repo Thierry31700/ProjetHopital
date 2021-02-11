@@ -4,7 +4,7 @@ import { Employe } from 'src/app/model/employe';
 import { EmployeService } from 'src/app/service/employe.service';
 
 @Component({
-  selector: 'app-employe-edit',
+  selector: '[app-employe-edit]',
   templateUrl: './employe-edit.component.html',
   styleUrls: ['./employe-edit.component.css']
 })
