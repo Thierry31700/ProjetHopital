@@ -7,12 +7,16 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { routes } from './routes';
+import { EmployeListComponent } from './crud/employe/employe-list/employe-list.component';
+import { EmployeEditComponent } from './crud/employe/employe-edit/employe-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    EmployeListComponent,
+    EmployeEditComponent
   ],
   imports: [
     BrowserModule,
