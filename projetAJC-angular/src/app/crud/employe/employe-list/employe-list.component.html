@@ -1,8 +1,15 @@
 <table>
+<tr>liste
+<th>id</th>
+<th>nom</th>
+<th>prenom</th>
+</tr>
+
+
     <tr *ngFor="let e of employes">
       <td>{{ e.id }}</td>
       <td>{{ e.nom }}</td>
-      <td>{{ e.duree }}</td>
+      <td>{{ e.prenom }}</td>
       <td>
         <button
           [routerLink]="['/employe', 'edit', e.id]"

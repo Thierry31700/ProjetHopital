@@ -1,7 +1,10 @@
 <div>
   menu <!--{{ user }} -->
-  <a [routerLink]="['/home']" routerLinkActive="active">home</a>
-  <a [routerLink]="['/login']" routerLinkActive="active">login</a>
+  <a [routerLink]="['/home']" routerLinkActive="active">home</a><br>
+  <a [routerLink]="['/login']" routerLinkActive="active">login</a><br>
+  <a [routerLink]="['/employe/edit']" routerLinkActive="active">Cree un employe</a><br>
+  <a [routerLink]="['/employe']" routerLinkActive="active">Liste des employes</a><br>
  <!-- <button (click)="logout()">deconnexion</button>-->
   </div>
   <router-outlet></router-outlet>
+  <h1>Ma page d'accueil</h1>

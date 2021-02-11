@@ -36,13 +36,11 @@ constructor(
         this.goList({ info: 'insert' });
       });
     }
-
-    private goList(info: Object) {
-      this.router.navigate(['/formation'], { queryParams: info });
-    }
   }
+  private goList(info: Object) {
+    this.router.navigate(['/employe'], { queryParams: info });
+   }
 
 
 
-
-}
+  }

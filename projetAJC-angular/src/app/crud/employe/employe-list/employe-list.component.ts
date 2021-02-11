@@ -16,7 +16,7 @@ employes: Employe[]= [];
   }
 
   public init() {
-    this.employeService.findAll().subscribe((data) => {
+    this.employeService.allEmploye().subscribe((data) => {
       this.employes = data;
     });
   }
