@@ -1,1 +1,20 @@
-<p>employe-list works!</p>
+<table>
+    <tr *ngFor="let e of employes">
+      <td>{{ e.id }}</td>
+      <td>{{ e.nom }}</td>
+      <td>{{ e.duree }}</td>
+      <td>
+        <button
+          [routerLink]="['/employe', 'edit', e.id]"
+          routerLinkActive="active"
+        >
+          editer
+        </button>
+      </td>
+      <td><button (click)="delete(e.id)">supprimer</button></td>
+    </tr>
+  </table>
+  
+  <button [routerLink]="['/employe', 'edit']" routerLinkActive="active">
+    ajouter
+  </button>
