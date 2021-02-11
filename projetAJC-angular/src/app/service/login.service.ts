@@ -12,9 +12,9 @@ export class LoginService {
   public auth(login: Login): Observable<void> {
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Basic ' + btoa(`${login.username}:${login.password}`),
+      Authorization: 'Basic ' + btoa(`${login.mail}:${login.password}`),
     });
-    return this.http.get<void>('http://localhost:8080/monsite/api/login', {
+    return this.http.get<void>('http://localhost:8080/projetajc/api/login', {
       headers: headers,
     });
   }

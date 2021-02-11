@@ -1,1 +1,7 @@
-<p>login works!</p>
+<div>
+    <div *ngIf="erreur">probleme</div>
+    <div>mail:<input [(ngModel)]="login.mail" /></div>
+    <div>password:<input type="password" [(ngModel)]="login.password" /></div>
+    <div><button (click)="send()">envoyer</button></div>
+  </div>
+  
