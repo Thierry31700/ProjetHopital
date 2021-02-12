@@ -10,13 +10,17 @@ import { EmployeService } from 'src/app/service/employe.service';
   styleUrls: ['./employe-edit.component.css']
 })
 export class EmployeEditComponent implements OnInit {
-employe:Employe[] = [];
+employe:Employe = new Employe();
 services: ServiceDp[]=[];
+managers:Employe[]
+
 constructor(
   private activatedRoute: ActivatedRoute,
     private router: Router,
     private employeService: EmployeService,
 ) { }
+
+
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {

@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
           'tokenId',
           btoa(`${this.login.mail}:${this.login.password}`)
         );
+        console.log(sessionStorage.getItem('tokenId'));
         sessionStorage.setItem('login', this.login.mail);
         this.router.navigate(['/home']);
       },

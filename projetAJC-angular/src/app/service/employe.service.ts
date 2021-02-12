@@ -21,7 +21,9 @@ private httpHeaders: HttpHeaders;
     });
    }
    public allEmploye(): Observable<Employe[]>{
+     console.log(sessionStorage.getItem('tokenId'));
      return this.http.get<Employe[]>(this.url,{headers: this.httpHeaders});
+
    }
    public delete(id: number): Observable<void>{
      return this.http.delete<void>(this.url + '/' +id);

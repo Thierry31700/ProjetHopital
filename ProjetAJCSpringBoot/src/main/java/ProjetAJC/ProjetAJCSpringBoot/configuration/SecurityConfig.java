@@ -28,14 +28,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Order(1)
 	public class SiteJavaSecurityConfig extends WebSecurityConfigurerAdapter {
 	
+		@Override
+			public void configure(WebSecurity web) throws Exception {
+				web.ignoring().antMatchers("/css/**");
+			}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// @formatter:off
 		//activation des restcontroller
 			
-		http.authorizeRequests()
-				.antMatchers("/","/css/**").permitAll()
+		http
+		.antMatcher("/spring/**")
+			.authorizeRequests()
 				.antMatchers("/spring/**").authenticated()
 				.and()
 				.formLogin()
@@ -67,18 +72,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				//activation des restcontroller
 				http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 					.and()
-					.authorizeRequests().antMatchers(HttpMethod.OPTIONS).anonymous()
+					.csrf().ignoringAntMatchers("/api/**")
 					.and()
-					.csrf().disable().authorizeRequests()
+					.antMatcher("/api/**")
+					.authorizeRequests().antMatchers(HttpMethod.OPTIONS).anonymous()
 						.antMatchers("/api/**").authenticated()
 						.and().httpBasic();
 				// @formatter:on
 		}
 		
-		@Override
-		public void configure(WebSecurity web) throws Exception {
-			web.ignoring().antMatchers("/api/creation","/api/creation/**","/api/employe","/api/employe/**");
-		}
+//		@Override
+//		public void configure(WebSecurity web) throws Exception {
+//			web.ignoring().antMatchers("/api/creation","/api/creation/**","/api/employe","/api/employe/**");
+//		}
 
 		@Override
 		protected void configure(AuthenticationManagerBuilder auth) throws Exception {

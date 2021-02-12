@@ -14,9 +14,9 @@ export class AppComponent {
 
   public logout(){
     sessionStorage.removeItem('tokenId');
-    sessionStorage.removeItem('mail');
+    sessionStorage.removeItem('login');
     this._user='';
-    this.router.navigate(['/login']);
+    this.router.navigate(['/home']);
   }
   public get user(){
     return sessionStorage.getItem('login');
