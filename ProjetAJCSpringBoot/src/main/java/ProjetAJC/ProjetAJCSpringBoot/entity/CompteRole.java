@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "compte_role")
 @SequenceGenerator(name = "seqCompteRole", sequenceName = "seq_compte_role", initialValue = 10, allocationSize = 1)
@@ -22,6 +24,7 @@ public class CompteRole {
 	@JoinColumn(name = "compte_id")
 	private Compte compte;
 	@Enumerated(EnumType.STRING)
+	@JsonView(Vue.Common.class)
 	private Role role;
 
 	public CompteRole() {

@@ -19,11 +19,11 @@
 		</c:if>
 		<h1>Bienvenu</h1>
 		<div>
-			<a href="${ctx}/conge">Congés</a> 
+			<a href="${ctx}/spring/conge">Congés</a> 
 			
-			<a href="${ctx}/manager">Validation des conges</a>
+			<a href="${ctx}/spring/manager">Validation des conges</a>
 			
-			<a href="${ctx}/admin">Gestion</a>
+			<a href="${ctx}/spring/admin">Gestion</a>
 		</div>
 	</div>
 </body>

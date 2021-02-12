@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.servletContext.contextPath}" />
 <div align="right">
-	<form action="${ctx}/logout" method="post" class="form-inline">
+	<form action="${ctx}/spring/logout" method="post" class="form-inline">
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}">
 		${pageContext.request.userPrincipal.name}&nbsp;

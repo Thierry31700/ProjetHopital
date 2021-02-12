@@ -14,7 +14,7 @@
 <title>Gestion Salarie</title>
 </head>
 <body>
-	<a id="btnDisconnect" href="${ctx}/accueil"><input type="button"
+	<a id="btnDisconnect" href="${ctx}/spring/accueil"><input type="button"
 		class="btn btn-danger" value="Se deconnecter"></a>
 
 
@@ -22,7 +22,7 @@
 
 	<!-- Button trigger modal -->
 	<a type="button" class="btn btn-primary"
-		href="${ctx}/conge/add">Créer une demande de congé</a>
+		href="${ctx}/spring/conge/add">Créer une demande de congé</a>
 
 		<!-- Modal -->
 
@@ -67,14 +67,17 @@
 					<td class="table-active">
 					<c:if test="${conges.etat == 'ATTENTE'}">
 					
-						<form class="formReponse" name="formReponse"
-								action="salarie" method="post">
-								<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}">
-								<input type="hidden" value="${conges.id}" name="id_conge">
-								<input type="submit" name="btnAnnuler" class="btn btn-warning"
-									value="Annuler">
-							</form>
+					<td><a href="${ctx}/spring/conge/delete?id=${conge.id}"
+						class="btn btn-outline-danger">supprimer</a></td>
+						
+<!-- 						<form class="formReponse" name="formReponse" -->
+<!-- 								action="employe" method="post"> -->
+<%-- 								<input type="hidden" name="${_csrf.parameterName}" --%>
+<%-- 					value="${_csrf.token}"> --%>
+<%-- 								<input type="hidden" value="${conges.id}" name="id_conge"> --%>
+<!-- 								<input type="submit" id="btnDelete" name="btnAnnuler" class="btn btn-warning" -->
+<!-- 									value="Annuler"> -->
+<!-- 							</form> -->
 					</c:if></td>
 				</tr>
 

@@ -51,7 +51,7 @@
 						placeholder="Entrez un motif"></form:textarea>
 				</div>
 				<div class="modal-footer">
-					<a type="button" class="btn trigger" href="${ctx}/conge"
+					<a type="button" class="btn trigger" href="${ctx}/spring/conge"
 						data-dismiss="modal">Annuler</a> 
 					<input type="submit"
 						class="btn btn-primary" id="btnSave" name="btnAjouter"

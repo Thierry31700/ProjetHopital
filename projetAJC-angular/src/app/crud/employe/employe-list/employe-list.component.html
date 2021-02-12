@@ -2,8 +2,8 @@
   <tr>
     <th>Nom</th>
     <th>Prenom</th>
-    <!-- <th>Mail</th>
-    <th>Service</th> -->
+    <th>Mail</th>
+    <th>Service</th>
     <th>Manager</th>
     <th></th>
     <th></th>
@@ -11,8 +11,8 @@
     <tr *ngFor="let e of employes">
       <td>{{ e.nom }}</td>
       <td>{{ e.prenom }}</td>
-      <!-- <td>{{ e.compte.mail }}</td>
-      <td>{{ e.service.libelle }}</td> -->
+      <td>{{ e.compte.mail }}</td>
+      <td>{{ e.service.libelle }}</td>
       <td>{{ e.manager }}</td>
       <td>
         <button

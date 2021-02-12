@@ -33,9 +33,9 @@
 					<td>${e.prenom}</td>
 					<td>${e.service.id}&nbsp;${e.service.libelle}</td>
 					<td>${e.compte.id}&nbsp;${e.compte.mail}</td>
-					<td><a href="./employe/edit?id=${e.id}"
+					<td><a href="./admin/edit?id=${e.id}"
 						class="btn btn-outline-primary">editer</a></td>
-					<td><a href="./employe/delete?id=${e.id}"
+					<td><a href="./admin/delete?id=${e.id}"
 						class="btn btn-outline-danger">supprimer</a></td>
 				</tr>
 			</c:forEach>

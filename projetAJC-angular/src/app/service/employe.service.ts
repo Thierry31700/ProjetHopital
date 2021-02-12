@@ -7,7 +7,8 @@ import { Employe } from '../model/employe';
   providedIn: 'root'
 })
 export class EmployeService {
-  private url: string='http://localhost:8080/projetajc/api/Employe';
+  private url: string='http://localhost:8080/projetajc/api/employe';
+
 
 private httpHeaders: HttpHeaders;
 

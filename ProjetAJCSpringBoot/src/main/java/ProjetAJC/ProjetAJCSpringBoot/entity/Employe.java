@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name="employe")
 @SequenceGenerator(name = "seqEmploye", sequenceName = "seq_employe", initialValue = 1, allocationSize = 1)
@@ -23,16 +25,20 @@ public class Employe {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqEmploye")
 	private Integer id;
 	@NotEmpty
+	@JsonView(Vue.Common.class)
 	private String nom;
 	@NotEmpty
+	@JsonView(Vue.Common.class)
 	private String prenom;
 	
 	@ManyToOne
 	@JoinColumn(name = "mgr")
+	@JsonView(Vue.Common.class)
 	private Employe manager;
 	
 	@ManyToOne
 	@JoinColumn(name = "Service")
+	@JsonView(Vue.Common.class)
 	protected ServiceDep service; 
 	
 	

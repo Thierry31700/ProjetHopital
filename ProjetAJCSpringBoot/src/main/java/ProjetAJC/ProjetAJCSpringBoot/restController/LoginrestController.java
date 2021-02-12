@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/login")
 @CrossOrigin(origins="*")
-public class LoginController {
+public class LoginrestController {
 	
 	@GetMapping("")
 	public ResponseEntity<Void> login() {

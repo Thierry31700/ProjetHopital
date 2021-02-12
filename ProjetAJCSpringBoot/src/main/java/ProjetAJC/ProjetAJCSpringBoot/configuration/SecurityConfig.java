@@ -36,17 +36,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			
 		http.authorizeRequests()
 				.antMatchers("/","/css/**").permitAll()
-				.anyRequest().authenticated()
+				.antMatchers("/spring/**").authenticated()
 				.and()
 				.formLogin()
-					.loginPage("/accueil")
-					.defaultSuccessUrl("/home")
-					.failureUrl("/accueil?error")
+					.loginPage("/spring/accueil")
+					.defaultSuccessUrl("/spring/home")
+					.failureUrl("/spring/accueil?error")
 					.permitAll()
 				.and()
 				.logout()
-					.logoutUrl("/logout")
-					.logoutSuccessUrl("/bye")
+					.logoutUrl("/spring/logout")
+					.logoutSuccessUrl("/spring/bye")
 					.permitAll();
 		// @formatter:on
 	}
@@ -77,7 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		@Override
 		public void configure(WebSecurity web) throws Exception {
-			web.ignoring().antMatchers("/api/creation","/api/creation/**");
+			web.ignoring().antMatchers("/api/creation","/api/creation/**","/api/employe","/api/employe/**");
 		}
 
 		@Override

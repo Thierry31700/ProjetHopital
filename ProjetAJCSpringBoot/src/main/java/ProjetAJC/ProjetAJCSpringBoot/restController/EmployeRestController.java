@@ -28,7 +28,7 @@ import ProjetAJC.ProjetAJCSpringBoot.exception.EmployeNotFoundException;
 import ProjetAJC.ProjetAJCSpringBoot.service.EmployeService;
 
 @RestController
-@RequestMapping("/api/Employe")
+@RequestMapping("/api/employe")
 @CrossOrigin(origins="*")
 public class EmployeRestController {
 

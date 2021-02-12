@@ -15,7 +15,7 @@
 <body>
 	<div class="container">
 		<h2>
-			A bientot <a href="${ctx}/accueil" class="btn btn-link">acceuil</a>
+			A bientot <a href="${ctx}/spring/accueil" class="btn btn-link">acceuil</a>
 		</h2>
 	</div>
 </body>

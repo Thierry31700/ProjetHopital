@@ -17,7 +17,7 @@ import ProjetAJC.ProjetAJCSpringBoot.service.ServiceDepService;
 
 
 @Controller
-@RequestMapping("/serviceDep")
+@RequestMapping("/spring/serviceDep")
 public class ServiceController {
 
 	@Autowired

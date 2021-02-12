@@ -21,7 +21,7 @@ import ProjetAJC.ProjetAJCSpringBoot.service.ServiceDepService;
 
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/spring/admin")
 public class EmployeController {
 	
 	@Autowired

@@ -20,7 +20,7 @@ import ProjetAJC.ProjetAJCSpringBoot.service.CompteDetails;
 import ProjetAJC.ProjetAJCSpringBoot.service.CongeService;
 
 @Controller
-@RequestMapping("/conge")
+@RequestMapping("/spring/conge")
 public class CongeController {
 	@Autowired
 	private CongeService congeService;
@@ -37,7 +37,7 @@ public class CongeController {
 	@GetMapping("/delete")
 	public ModelAndView delete(@RequestParam Integer id) {
 		congeService.delete(id);
-		return new ModelAndView("redirect:/conge");
+		return new ModelAndView("redirect:/spring/conge");
 	}
 
 	@PostMapping("/save")
@@ -53,7 +53,7 @@ public class CongeController {
 			congeService.modification(conge);
 		}
 
-		return new ModelAndView("redirect:/conge");
+		return new ModelAndView("redirect:/spring/conge");
 	}
 
 	@GetMapping("/edit")

@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @SequenceGenerator(name = "seqServiceDep", sequenceName = "seq_service_dep", initialValue = 1, allocationSize = 1)
 
@@ -14,6 +16,7 @@ public class ServiceDep {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqServiceDep")
 	private Integer id;
+	@JsonView(Vue.Common.class)
 	private String libelle;
 	
 	public ServiceDep() {

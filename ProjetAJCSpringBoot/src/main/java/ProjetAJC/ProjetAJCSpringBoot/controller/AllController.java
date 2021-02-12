@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/spring/home")
 public class AllController {
 
 	Logger log = LoggerFactory.getLogger(AllController.class);

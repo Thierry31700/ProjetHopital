@@ -8,15 +8,17 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'projetAJC-angular';
-  user :string= sessionStorage.getItem('mail');
+  _user :string= '';
 
   constructor(private router: Router) {}
 
   public logout(){
     sessionStorage.removeItem('tokenId');
     sessionStorage.removeItem('mail');
-    this.user='';
-    this.router.navigate(['/home']);
+    this._user='';
+    this.router.navigate(['/login']);
   }
-  
+  public get user(){
+    return sessionStorage.getItem('login');
+  }
 }
