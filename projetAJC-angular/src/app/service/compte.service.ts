@@ -8,7 +8,7 @@ import { Compte } from '../model/compte';
 })
 export class CompteService {
 
-  private url: string='';
+  private url: string='http://localhost:8080/projetajc/api/compte';
   constructor(private http: HttpClient) {}
 
   public allCompte(): Observable<Compte[]>{

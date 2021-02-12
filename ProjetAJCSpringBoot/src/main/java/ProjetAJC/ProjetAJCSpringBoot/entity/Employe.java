@@ -44,6 +44,7 @@ public class Employe {
 	
 	@OneToOne
 	@JoinColumn(name = "compte")
+	@JsonView(Vue.Common.class)
 	protected Compte compte;
 	
 	@Version
