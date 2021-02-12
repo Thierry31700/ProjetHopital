@@ -74,8 +74,8 @@ public class ServiceDepRestController {
 		if (serviceDepEnBase.getId() == null) {
 			throw new ServiceDepNotFoundException();
 		}
-		serviceDepEnBase.setPrenom(p.getPrenom());
-		serviceDepEnBase.setNom(p.getNom());
+		serviceDepEnBase.setLibelle(s.getLibelle());
+		
 		serviceDepService.save(serviceDepEnBase);
 		return serviceDepEnBase;
 	}
@@ -90,25 +90,25 @@ public class ServiceDepRestController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
-	@GetMapping("/test")
-	@JsonView(Vue.Common.class)
-	public ServiceDep test() {
-		return testPrivate();
-	}
-
-	@GetMapping("/test/Adresse")
-	@JsonView(Vue.ServiceDepWithAdresse.class)
-	public ServiceDep test2() {
-		return testPrivate();
-	}
-
-	private ServiceDep testPrivate() {
-		Adresse a = new Adresse();
-		a.setRue("rue aaa");
-		ServiceDep p = new ServiceDep("aa", "pp");
-		p.setAdresse(a);
-		return p;
-	}
+//	@GetMapping("/test")
+//	@JsonView(Vue.Common.class)
+//	public ServiceDep test() {
+//		return testPrivate();
+//	}
+//
+//	@GetMapping("/test/Adresse")
+//	@JsonView(Vue.ServiceDepWithAdresse.class)
+//	public ServiceDep test2() {
+//		return testPrivate();
+//	}
+//
+//	private ServiceDep testPrivate() {
+//		Adresse a = new Adresse();
+//		a.setRue("rue aaa");
+//		ServiceDep p = new ServiceDep("aa", "pp");
+//		p.setAdresse(a);
+//		return p;
+//	}
 
 }
 
