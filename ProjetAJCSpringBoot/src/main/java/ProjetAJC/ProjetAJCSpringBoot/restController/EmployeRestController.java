@@ -1,4 +1,4 @@
-package ProjetAJC.ProjetAJCSrpingBoot.restController;
+package ProjetAJC.ProjetAJCSpringBoot.restController;
 
 import java.net.URI;
 import java.util.List;
