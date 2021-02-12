@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Employe } from 'src/app/model/employe';
+import { ServiceDp } from 'src/app/model/service-dp';
 import { EmployeService } from 'src/app/service/employe.service';
 
 @Component({
@@ -9,8 +10,8 @@ import { EmployeService } from 'src/app/service/employe.service';
   styleUrls: ['./employe-edit.component.css']
 })
 export class EmployeEditComponent implements OnInit {
-employe:Employe = new Employe();
-
+employe:Employe[] = [];
+services: ServiceDp[]=[];
 constructor(
   private activatedRoute: ActivatedRoute,
     private router: Router,
