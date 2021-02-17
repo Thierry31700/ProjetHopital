@@ -1,7 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
+
 import { Employe } from '../model/employe';
+
 
 @Injectable({
   providedIn: 'root'
@@ -38,8 +41,16 @@ private httpHeaders: HttpHeaders;
     const o = {
       nom: employe.nom,
       prenom: employe.prenom,
-      manager: employe.manager,
-      
+      manager: {
+        id : employe.manager.id
+      },
+      service: {
+        id:employe.servicedp.id
+      },
+      compte: {
+        mail: employe.compte.mail,
+        login : employe.compte.password
+      }
 
     };
     return this.http.post<Employe>(this.url, o);

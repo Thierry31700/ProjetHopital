@@ -28,6 +28,7 @@ public class Compte {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqCompte")
+	@JsonView(Vue.Common.class)
 	protected Integer id;
 	@Column(unique=true)
 	@JsonView(Vue.Common.class)
@@ -37,7 +38,9 @@ public class Compte {
 	
 	@Version
 	protected int version;
+	
 	@OneToMany(mappedBy = "compte")
+	@JsonView(Vue.Common.class)
 	protected Set<CompteRole> roles;
 	
 	

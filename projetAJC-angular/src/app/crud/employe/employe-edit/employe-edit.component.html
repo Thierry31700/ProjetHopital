@@ -2,9 +2,17 @@
     <div>id:<input [ngModel]="employe.id" readonly /></div>
     <div>nom:<input [(ngModel)]="employe.nom" /></div>
     <div>prenom:<input [(ngModel)]="employe.prenom" /></div>
-   <!-- <div>manager:<input [(ngModel)]="employe.manager" /></div>
-    <div>service:<input [(ngModel)]="employe.servicedp" /></div>
-    <div>compte:<input [(ngModel)]="employe.compte" /></div> -->  
+   <div>manager:<input [(ngModel)]="employe.manager.id" /></div>
+    <div>service:
+    <select>
+      <option *ngFor="ServiceDp[]">
+        <input [(ngModel)]="employe.servicedp.id.libelle" />
+      </option>
+    </select>
+  </div>
+
+    <div>mail:<input [(ngModel)]="employe.compte.mail" /></div>
+    <div>password:<input [(ngModel)]="employe.compte.password" /></div>
     <div>
       <button (click)="save()">enregistrer</button>
       <button [routerLink]="['/employe']" routerLinkActive="active">

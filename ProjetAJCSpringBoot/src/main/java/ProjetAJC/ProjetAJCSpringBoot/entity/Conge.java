@@ -18,6 +18,8 @@ import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @SequenceGenerator(name = "seqConge", sequenceName = "seq_conge", initialValue = 1, allocationSize = 1)
 public class Conge {
@@ -26,6 +28,7 @@ public class Conge {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqConge")
+	@JsonView(Vue.Common.class)
 	private Integer id;
 	
 	@ManyToOne

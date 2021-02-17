@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class Employe {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqEmploye")
+	@JsonView(Vue.Common.class)
 	private Integer id;
 	@NotEmpty
 	@JsonView(Vue.Common.class)

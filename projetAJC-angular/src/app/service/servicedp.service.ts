@@ -26,12 +26,12 @@ export class ServicedpService {
     }
   
     public update(Servicedp: ServiceDp): Observable<ServiceDp> {
-      return this.http.put<ServiceDp>(`${this.url}/${Servicedp.$id}`, Servicedp);
+      return this.http.put<ServiceDp>(`${this.url}/${Servicedp.id}`, Servicedp);
     }
   
     public insert(Servicedp: ServiceDp): Observable<ServiceDp> {
       const o = {
-        libelle: Servicedp.$libelle,
+        libelle: Servicedp.libelle,
        
   
       };

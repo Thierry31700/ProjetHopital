@@ -21,10 +21,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import ProjetAJC.ProjetAJCSpringBoot.entity.Compte;
+import ProjetAJC.ProjetAJCSpringBoot.entity.Vue;
 import ProjetAJC.ProjetAJCSpringBoot.exception.EmployeNotFoundException;
 import ProjetAJC.ProjetAJCSpringBoot.exception.UserInvalidException;
 import ProjetAJC.ProjetAJCSpringBoot.service.CompteDetailsService;
+
 
 
 
@@ -37,6 +41,7 @@ public class CompteRestController {
 	private CompteDetailsService compteService;
 	
 	@GetMapping({ "", "/" })
+	@JsonView(Vue.Common.class)
 	public List<Compte> getAllCompte() {
 		return compteService.allCompte();
 	}
@@ -55,6 +60,7 @@ public class CompteRestController {
 	}
 
 	@GetMapping("/{mail}")
+	@JsonView(Vue.Common.class)
 	public Compte findById(@PathVariable("mail") String mail) {
 		Compte c = compteService.findbyId(mail);
 		if (c.getId() != null) {
@@ -64,6 +70,7 @@ public class CompteRestController {
 	}
 
 	@PutMapping("/{mail}")
+	@JsonView(Vue.Common.class)
 	public Compte update(@Valid @RequestBody Compte c, BindingResult br, @PathVariable("mail") String mail) {
 		if (br.hasErrors()) {
 			throw new UserInvalidException();

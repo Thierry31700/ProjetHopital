@@ -28,6 +28,7 @@ import ProjetAJC.ProjetAJCSpringBoot.entity.Employe;
 import ProjetAJC.ProjetAJCSpringBoot.entity.Vue;
 import ProjetAJC.ProjetAJCSpringBoot.exception.EmployeInvalidException;
 import ProjetAJC.ProjetAJCSpringBoot.exception.EmployeNotFoundException;
+import ProjetAJC.ProjetAJCSpringBoot.service.CompteDetailsService;
 import ProjetAJC.ProjetAJCSpringBoot.service.EmployeService;
 
 
@@ -38,6 +39,8 @@ public class EmployeRestController {
 
 	@Autowired
 	private EmployeService employeService;
+	@Autowired
+	private CompteDetailsService compteService;
 
 	@GetMapping({ "", "/" })
 	@JsonView(Vue.Common.class)
@@ -51,6 +54,9 @@ public class EmployeRestController {
 		if (br.hasErrors()) {
 			throw new EmployeInvalidException();
 		}
+		compteService.creationCompte(e.getCompte());
+		
+		
 		employeService.creationEmploye(e);
 		URI uri = uCB.path("/api/Employe/{id}").buildAndExpand(e.getId()).toUri();
 		HttpHeaders headers = new HttpHeaders();
@@ -59,6 +65,7 @@ public class EmployeRestController {
 	}
 
 	@GetMapping("/{id}")
+	@JsonView(Vue.Common.class)
 	public Employe findById(@PathVariable("id") Integer id) {
 		Employe e = employeService.findbyId(id);
 		if (e.getId() != null) {
@@ -68,6 +75,7 @@ public class EmployeRestController {
 	}
 
 	@PutMapping("/{id}")
+	@JsonView(Vue.Common.class)
 	public Employe update(@Valid @RequestBody Employe e, BindingResult br, @PathVariable("id") Integer id) {
 		if (br.hasErrors()) {
 			throw new EmployeInvalidException();

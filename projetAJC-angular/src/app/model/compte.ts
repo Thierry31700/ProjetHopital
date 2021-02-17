@@ -1,11 +1,11 @@
 export class Compte {
-    private id: number;
+    private _id: number;
     private _mail: string;
     private _password: string;
 
 
-	constructor($id: number, mail: string, password: string) {
-		this.id = $id;
+	constructor(id: number, mail: string, password: string) {
+		this._id = id;
 		this._mail = mail;
 		this._password = password;
 	}
@@ -14,8 +14,8 @@ export class Compte {
      * Getter $id
      * @return {number}
      */
-	public get $id(): number {
-		return this.id;
+	public get id(): number {
+		return this._id;
 	}
 
     /**
@@ -38,8 +38,8 @@ export class Compte {
      * Setter $id
      * @param {number} value
      */
-	public set $id(value: number) {
-		this.id = value;
+	public set id(value: number) {
+		this._id = value;
 	}
 
     /**

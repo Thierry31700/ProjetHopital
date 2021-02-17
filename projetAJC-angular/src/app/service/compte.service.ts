@@ -26,7 +26,7 @@ export class CompteService {
     }
   
     public update(Compte: Compte): Observable<Compte> {
-      return this.http.put<Compte>(`${this.url}/${Compte.$id}`, Compte);
+      return this.http.put<Compte>(`${this.url}/${Compte.id}`, Compte);
     }
   
     public insert(Compte: Compte): Observable<Compte> {

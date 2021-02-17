@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class ServiceDep {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqServiceDep")
+	@JsonView(Vue.Common.class)
 	private Integer id;
 	@JsonView(Vue.Common.class)
 	private String libelle;
